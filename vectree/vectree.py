@@ -145,12 +145,13 @@ class Quantization():
             xyz = self.feats_bak[:, 0:3]
             np.savez_compressed(f'{save_path}/extreme_saving/xyz.npz', xyz)  # octreed based compression will be updated 
             
-
-        # zip everything together to get final size
-        os.system(f"zip -r {save_path}/extreme_saving.zip {save_path}/extreme_saving")
-        size = os.path.getsize(f'{save_path}/extreme_saving.zip')
-        size_MB = size / 1024.0 / 1024.0
-        print("Size = ", size_MB, " MB")
+        # TODO: Use something other than zip. The Nvidia Pytorch docker images do not
+        # have zip installed.
+        # # zip everything together to get final size
+        # os.system(f"zip -r {save_path}/extreme_saving.zip {save_path}/extreme_saving")
+        # size = os.path.getsize(f'{save_path}/extreme_saving.zip')
+        # size_MB = size / 1024.0 / 1024.0
+        # print("Size = ", size_MB, " MB")
             
         return all_feat, all_indice
     
